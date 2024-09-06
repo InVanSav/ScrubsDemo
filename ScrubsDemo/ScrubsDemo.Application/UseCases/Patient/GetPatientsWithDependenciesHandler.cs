@@ -1,3 +1,5 @@
+using ScrubsDemo.Application.Dto;
+using ScrubsDemo.Application.Dto.PatientDto;
 using ScrubsDemo.Application.IRepository;
 using ScrubsDemo.Application.IRepository.Requests;
 using ScrubsDemo.Domain.Entities.Patient;
@@ -22,6 +24,23 @@ public class GetPatientsWithDependenciesHandler
     /// <summary>
     /// Обработать получение пациентов с их связями
     /// </summary>
-    public Task<IReadOnlyCollection<PatientWithDependencies>> Handle(EntityWithDependenciesRequest request)
-        => _patientRepository.GetAllPatientsWithDependenciesAsync(request);
+    public async Task<IReadOnlyCollection<PatientWithDependenciesDto>> HandleAsync(EntityWithDependenciesRequest request)
+    {
+        var patients = await _patientRepository.GetAllPatientsWithDependenciesAsync(request);
+
+        return patients.Select(patient => new PatientWithDependenciesDto
+            {
+                Name = patient.Name,
+                Surname = patient.Surname,
+                Patronymic = patient.Patronymic,
+                Address = patient.Address,
+                Birthday = patient.Birthday,
+                Sex = patient.Sex,
+                AreaNumber = new AreaDto
+                {
+                    Number = patient.AreaNumber.Number
+                }
+            })
+            .ToList();
+    }
 }

@@ -1,4 +1,6 @@
+using ScrubsDemo.Application.Dto.DoctorDto;
 using ScrubsDemo.Application.IRepository;
+using ScrubsDemo.Domain.Entities.Doctor;
 
 namespace ScrubsDemo.Application.UseCases.Doctor;
 
@@ -20,6 +22,16 @@ public class GetDoctorByFullNameHandler
     /// <summary>
     /// Выполнить получение врача
     /// </summary>
-    public Task Handle(string fullName)
-        => _doctorRepository.GetDoctorByFullNameAsync(fullName);
+    public async Task<DoctorWithoutDependenciesDto> HandleAsync(string fullName)
+    {
+        var doctor = await _doctorRepository.GetDoctorByFullNameAsync(fullName);
+
+        return new DoctorWithoutDependenciesDto
+        {
+            FullName = doctor.FullName,
+            Specialization = doctor.Specialization,
+            Area = doctor.Area,
+            Office = doctor.Office
+        };
+    }
 }

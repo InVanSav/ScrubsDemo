@@ -20,6 +20,6 @@ public class DeleteDoctorHandler
     /// <summary>
     /// Выполнить удаление врача
     /// </summary>
-    public Task Handle(string fullName)
+    public Task HandleAsync(string fullName)
         => _doctorRepository.DeleteDoctorAsync(fullName);
 }

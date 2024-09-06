@@ -22,7 +22,7 @@ public class UpdateDoctorHandler
     /// <summary>
     /// Выполнить обновление врача
     /// </summary>
-    public async Task Handle(DoctorWithoutDependenciesDto doctorWithoutDependencies)
+    public async Task HandleAsync(DoctorWithoutDependenciesDto doctorWithoutDependencies)
     {
         var doctor = new DoctorWithoutDependencies
         {
