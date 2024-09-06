@@ -20,6 +20,6 @@ public class DeletePatientHandler
     /// <summary>
     /// Обработать удаление пациента
     /// </summary>
-    public Task Handle(string name, string surname, string patronymic)
+    public Task HandleAsync(string name, string surname, string? patronymic)
         => _patientRepository.DeletePatientAsync(name, surname, patronymic);
 }

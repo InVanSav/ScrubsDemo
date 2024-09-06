@@ -22,7 +22,7 @@ public class CreatePatientHandler
     /// <summary>
     /// Обработать создание пациента
     /// </summary>
-    public async Task Handle(PatientWithoutDependenciesDto patientWithoutDependenciesDto)
+    public async Task HandleAsync(PatientWithoutDependenciesDto patientWithoutDependenciesDto)
     {
         var patient = new PatientWithoutDependencies
         {
