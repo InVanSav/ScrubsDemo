@@ -26,8 +26,8 @@ public class PatientRepository : IPatientRepository
     }
 
     // <inheritdoc />
-    public async Task CreatePatientAsync(PatientWithoutDependencies patientWithoutDependencies)
-        => await _msSqlHandler.ExecuteAsync("Patient.CreatePatient",
+    public Task CreatePatientAsync(PatientWithoutDependencies patientWithoutDependencies)
+        => _msSqlHandler.ExecuteAsync("Patient.CreatePatient",
             new KeyValuePair<string, object>("name", patientWithoutDependencies.Name),
             new KeyValuePair<string, object>("surname", patientWithoutDependencies.Surname),
             new KeyValuePair<string, object>("patronymic", patientWithoutDependencies.Patronymic ?? string.Empty),
@@ -37,8 +37,8 @@ public class PatientRepository : IPatientRepository
             new KeyValuePair<string, object>("areaNumber", patientWithoutDependencies.AreaNumber));
 
     // <inheritdoc />
-    public async Task UpdatePatientAsync(PatientWithoutDependencies patientWithoutDependencies)
-        => await _msSqlHandler.ExecuteAsync("Patient.UpdatePatient",
+    public Task UpdatePatientAsync(PatientWithoutDependencies patientWithoutDependencies)
+        => _msSqlHandler.ExecuteAsync("Patient.UpdatePatient",
             new KeyValuePair<string, object>("name", patientWithoutDependencies.Name),
             new KeyValuePair<string, object>("surname", patientWithoutDependencies.Surname),
             new KeyValuePair<string, object>("patronymic", patientWithoutDependencies.Patronymic ?? string.Empty),
@@ -48,15 +48,15 @@ public class PatientRepository : IPatientRepository
             new KeyValuePair<string, object>("areaNumber", patientWithoutDependencies.AreaNumber));
 
     // <inheritdoc />
-    public async Task DeletePatientAsync(string name, string surname, string? patronymic)
-        => await _msSqlHandler.ExecuteAsync("Patient.DeletePatient",
+    public Task DeletePatientAsync(string name, string surname, string? patronymic)
+        => _msSqlHandler.ExecuteAsync("Patient.DeletePatient",
             new KeyValuePair<string, object>("name", name),
             new KeyValuePair<string, object>("surname", surname),
             new KeyValuePair<string, object>("patronymic", patronymic ?? string.Empty));
 
     // <inheritdoc />
-    public async Task<PatientWithoutDependencies> GetPatientByFullNameAsync(string name, string surname, string? patronymic)
-        => await _msSqlHandler.ReadAsync("Patient.GetPatientByFullName",
+    public Task<PatientWithoutDependencies> GetPatientByFullNameAsync(string name, string surname, string? patronymic)
+        => _msSqlHandler.ReadAsync("Patient.GetPatientByFullName",
             dataReader => new PatientWithoutDependencies
             {
                 Name = dataReader.GetString("name"),
