@@ -6,9 +6,9 @@ namespace ScrubsDemo.Application.IRepository.Requests;
 public record EntityWithDependenciesRequest
 {
     /// <summary>
-    /// Название столбца
+    /// Название столбца для сортировки
     /// </summary>
-    public string Column { get; init; } = string.Empty;
+    public string SortingColumn { get; init; } = string.Empty;
 
     /// <summary>
     /// Отступ от начала

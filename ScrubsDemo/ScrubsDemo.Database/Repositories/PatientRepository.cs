@@ -89,5 +89,5 @@ public class PatientRepository : IPatientRepository
             },
             new KeyValuePair<string, object>("offset", request.Offset),
             new KeyValuePair<string, object>("limit", request.Limit),
-            new KeyValuePair<string, object>("column", request.Column));
+            new KeyValuePair<string, object>("column", request.SortingColumn));
 }

@@ -8,17 +8,22 @@ public class MsSqlConnection
     /// <summary>
     /// Название сервера
     /// </summary>
-    public string DataSource { get; set; }
+    public string Server { get; set; }
 
     /// <summary>
     /// Название базы данных
     /// </summary>
-    public string InitialCatalog { get; set; }
+    public string Database { get; set; }
 
     /// <summary>
-    /// Проверка подлинности
+    /// Пользователь
     /// </summary>
-    public bool IntegratedSecurity { get; set; }
+    public string UserId { get; set; }
+
+    /// <summary>
+    /// Пароль
+    /// </summary>
+    public string Password { get; set; }
 
     /// <summary>
     /// Получить строку подключения к базе данных
@@ -26,6 +31,6 @@ public class MsSqlConnection
     /// <returns>Строку подключения к базе данных MsSql</returns>
     public string GetConnectionString()
     {
-        return  $"Data Source={DataSource};Initial Catalog={InitialCatalog};Integrated Security={IntegratedSecurity}";
+        return  $"Server={Server};Database={Database};User Id={UserId};Password={Password};";
     }
 }

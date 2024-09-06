@@ -38,30 +38,35 @@ public class PatientController : ControllerBase
     /// <summary>
     /// Создание пациента
     /// </summary>
+    [HttpPost("create")]
     public Task CreatePatientAsync(PatientWithoutDependenciesDto patientWithoutDependencies)
         => _createPatientHandler.HandleAsync(patientWithoutDependencies);
 
     /// <summary>
     /// Обновление пациента
     /// </summary>
+    [HttpPut("update")]
     public Task UpdatePatientAsync(PatientWithoutDependenciesDto patientWithoutDependencies)
         => _updatePatientHandler.HandleAsync(patientWithoutDependencies);
 
     /// <summary>
     /// Удаление пациента
     /// </summary>
+    [HttpDelete("delete")]
     public Task DeletePatientAsync(string name, string surname, string? patronymic)
         => _deletePatientHandler.HandleAsync(name, surname, patronymic);
 
     /// <summary>
     /// Получение пациента по его ФИО
     /// </summary>
+    [HttpPost("getByFullName")]
     public Task<PatientWithoutDependenciesDto> GetPatientByFullNameAsync(string name, string surname, string? patronymic)
         => _getPatientByFullNameHandler.HandleAsync(name, surname, patronymic);
 
     /// <summary>
     /// Получение списка пациентов с их связями
     /// </summary>
-    public Task<IReadOnlyCollection<PatientWithDependenciesDto>> GetAllPatientsWithDependenciesAsync(EntityWithDependenciesRequest request)
+    [HttpPost("getAllWithDependencies")]
+    public Task<IReadOnlyCollection<PatientWithDependenciesDto>> GetAllPatientsWithDependenciesAsync([FromBody] EntityWithDependenciesRequest request)
         => _getPatientsWithDependenciesHandler.HandleAsync(request);
 }
