@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Scripts\InitTables.sql" />
+      <EmbeddedResource Include="InitialScripts\InitTables.sql" />
+      <None Remove="MsSql\Scripts\Doctor\CreateDoctor.sql" />
+      <EmbeddedResource Include="MsSql\Scripts\Doctor\CreateDoctor.sql" />
+      <None Remove="MsSql\Scripts\Doctor\DeleteDoctor.sql" />
+      <EmbeddedResource Include="MsSql\Scripts\Doctor\DeleteDoctor.sql" />
+      <None Remove="MsSql\Scripts\Doctor\UpdateDoctor.sql" />
+      <EmbeddedResource Include="MsSql\Scripts\Doctor\UpdateDoctor.sql" />
+      <None Remove="MsSql\Scripts\Doctor\GetDoctorByFullName.sql" />
+      <EmbeddedResource Include="MsSql\Scripts\Doctor\GetDoctorByFullName.sql" />
+      <None Remove="MsSql\Scripts\Doctor\SelectDoctorOrderedRange.sql" />
+      <EmbeddedResource Include="MsSql\Scripts\Doctor\SelectDoctorOrderedRange.sql" />
+      <None Remove="MsSql\Scripts\Patient\CreatePatient.sql" />
+      <EmbeddedResource Include="MsSql\Scripts\Patient\CreatePatient.sql" />
+      <None Remove="MsSql\Scripts\Patient\DeletePatient.sql" />
+      <EmbeddedResource Include="MsSql\Scripts\Patient\DeletePatient.sql" />
+      <None Remove="MsSql\Scripts\Patient\GetPatientByFullName.sql" />
+      <EmbeddedResource Include="MsSql\Scripts\Patient\GetPatientByFullName.sql" />
+      <None Remove="MsSql\Scripts\Patient\SelectPatientOrderedRange.sql" />
+      <EmbeddedResource Include="MsSql\Scripts\Patient\SelectPatientOrderedRange.sql" />
+      <None Remove="MsSql\Scripts\Patient\UpdatePatient.sql" />
+      <EmbeddedResource Include="MsSql\Scripts\Patient\UpdatePatient.sql" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Options">
+        <HintPath>..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.0\Microsoft.Extensions.Options.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ScrubsDemo.Application\ScrubsDemo.Application.csproj" />
+      <ProjectReference Include="..\ScrubsDemo.Domain\ScrubsDemo.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    </ItemGroup>
+
+</Project>
