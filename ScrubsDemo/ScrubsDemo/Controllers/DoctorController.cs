@@ -38,30 +38,35 @@ public class DoctorController : ControllerBase
     /// <summary>
     /// Создание врача
     /// </summary>
+    [HttpPost("create")]
     public Task CreateDoctorAsync(DoctorWithoutDependenciesDto doctorWithoutDependencies)
         => _createDoctorHandler.HandleAsync(doctorWithoutDependencies);
 
     /// <summary>
     /// Обновление врача
     /// </summary>
+    [HttpPut("update")]
     public Task UpdateDoctorAsync(DoctorWithoutDependenciesDto doctorWithoutDependencies)
         => _updateDoctorHandler.HandleAsync(doctorWithoutDependencies);
 
     /// <summary>
     /// Удаление врача
     /// </summary>
+    [HttpDelete("delete")]
     public Task DeleteDoctorAsync(string fullName)
         => _deleteDoctorHandler.HandleAsync(fullName);
 
     /// <summary>
     /// Получение врача по его ФИО
     /// </summary>
-    public Task<DoctorWithoutDependenciesDto> GetDoctorByFullNameAsync(string fullName)
+    [HttpPost("getByFullName")]
+    public Task<DoctorWithoutDependenciesDto> GetDoctorByFullNameAsync([FromQuery] string fullName)
         => _getDoctorByFullNameHandler.HandleAsync(fullName);
 
     /// <summary>
     /// Получение списка врачей с их связями
     /// </summary>
-    public Task<IReadOnlyCollection<DoctorWithDependenciesDto>> GetDoctorsWithDependenciesAsync(EntityWithDependenciesRequest request)
+    [HttpPost("getWithDependencies")]
+    public Task<IReadOnlyCollection<DoctorWithDependenciesDto>> GetDoctorsWithDependenciesAsync([FromBody] EntityWithDependenciesRequest request)
         => _getDoctorsWithDependenciesHandler.HandleAsync(request);
 }
