@@ -1,0 +1,4 @@
+SELECT *
+FROM "Patients"
+ORDER BY @column ASC
+OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY;

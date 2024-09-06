@@ -1,0 +1,1 @@
+DELETE FROM "Doctors" WHERE "fullName" = @fullName
